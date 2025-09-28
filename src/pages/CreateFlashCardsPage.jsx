@@ -1,7 +1,7 @@
 import React from 'react'
-import FlashCardItem from '../components/FlashCardItem/FlashCardItem'
+import FlashCardItem from '../components/CreateFlashCardSet/CreateFlashCardSet'
 
-function CreateFlashCards() {
+function CreateFlashCardsPage() {
     return (
         <>
             <div>CreateFlashCards</div>
@@ -10,4 +10,4 @@ function CreateFlashCards() {
     )
 }
 
-export default CreateFlashCards
+export default CreateFlashCardsPage;
