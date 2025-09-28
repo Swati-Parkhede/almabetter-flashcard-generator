@@ -1,13 +1,13 @@
 import React from 'react'
 import './CreateFlashCardSet.css'
 import { Formik, Form } from "formik";
-
+import { EditFlashCardItemList } from '../EditFlashCardItemList/EditFlashCardItemList';
 function CreateFlashCardSet() {
   return (
-    <div>
+    <div className='CreateFlashPage'>
       <form >
-        <label htmlFor="createGroup">Create Group*<br/>
-          <input list='categories'/>
+        <label htmlFor="createGroup">Create Group*<br />
+          <input list='categories' />
           <datalist id='categories'>
             <option value="a"></option>
             <option value="b">b</option>
@@ -34,9 +34,10 @@ function CreateFlashCardSet() {
         )}
       </Formik>
       <div>
-        <label htmlFor="Add description">Add description</label>
+        <label className='AddDesc' htmlFor="Add description">Add description</label><br/>
         <textarea />
       </div>
+      <EditFlashCardItemList />
     </div>
   )
 }

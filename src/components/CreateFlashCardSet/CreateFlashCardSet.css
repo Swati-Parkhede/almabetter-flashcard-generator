@@ -1,7 +1,7 @@
-.form{
-    border: none;
-   
+.AddDesc{
+    width: 600px;
+    height: 35px;
 }
-.flabel{
-    border: 1px solid black;
+.CreateFlashPage{
+    margin: 20px; 
 }

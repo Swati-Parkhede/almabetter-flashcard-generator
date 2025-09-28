@@ -1,0 +1,33 @@
+.cardPage {
+    display: grid;
+    grid: 0 / auto auto auto auto;
+    gap: 30px;
+}
+
+.TextArea {
+    height: 30px;
+    width: 350px;
+}
+
+.CardImagebtn {
+    border: 1px solid #5f75ee;
+    border-radius: 5px;
+    padding: 6px 22px;
+    font-size: small;
+    font-weight: 600;
+    color: #5f75ee;
+    height: 21px;
+    width: 80px;
+}
+
+.CardItemIndx{
+    display: table;
+    background-color: #ef3030;
+    color: white;
+    text-align: center;
+    border-radius: 61px;
+    height: 25px;
+    border: 1px solid red;
+    display: table;
+    width: 25px;
+} 
