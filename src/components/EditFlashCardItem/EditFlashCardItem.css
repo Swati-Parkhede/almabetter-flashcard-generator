@@ -30,4 +30,10 @@
     border: 1px solid red;
     display: table;
     width: 25px;
-} 
+}
+
+.errormsg{
+    color: #ef3030;
+    font-weight: 500;
+    font-size: small;
+}

@@ -1,7 +1,35 @@
-.AddDesc{
+.AddDesc {
     width: 600px;
-    height: 35px;
 }
-.CreateFlashPage{
-    margin: 20px; 
+
+.CreateFlashPage {
+    margin: 20px;
+}
+
+.CardDetails {
+    display: flex;
+}
+
+.CardSetCb {
+    width: 300px;
+    height: 25px;
+    font-size: large;
+}
+
+.UploadimageBtn {
+    border: 1px solid blue;
+    margin-left: 60px;
+    padding: 7px 20px;
+    font-size: small;
+}
+
+.smallImage {
+    width: 25px;
+    vertical-align: middle;
+    margin: 0px 10px;
+}
+
+.descriptionText {
+    width: 500px;
+    rows: 3
 }

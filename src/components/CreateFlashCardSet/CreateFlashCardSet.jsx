@@ -4,42 +4,32 @@ import { Formik, Form } from "formik";
 import { EditFlashCardItemList } from '../EditFlashCardItemList/EditFlashCardItemList';
 function CreateFlashCardSet() {
   return (
-    <div className='CreateFlashPage'>
-      <form >
-        <label htmlFor="createGroup">Create Group*<br />
-          <input list='categories' />
-          <datalist id='categories'>
+    <div className="CreateFlashPage">
+      <label htmlFor="createGroup">Create Group*</label>
+      <div className="CardDetails">
+        <div>
+          <input className="CardSetCb" list="categories" />
+          <datalist id="categories">
             <option value="a"></option>
             <option value="b">b</option>
             <option value="c">c</option>
             <option value="d">d</option>
           </datalist>
-        </label>
-      </form>
-      <Formik
-        initialValues={{ image: null }}
-        onSubmit={(values) => {
-          console.log(values.image);
-        }}
-      >
-        {({ setFieldValue }) => (
-          <Form>
-            <input
-              name="image"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setFieldValue("image", e.currentTarget.files[0])}
-            />
-          </Form>
-        )}
-      </Formik>
-      <div>
-        <label className='AddDesc' htmlFor="Add description">Add description</label><br/>
-        <textarea />
+        </div>
+        <div className="UploadimageBtn">
+          <img className="smallImage" src="/upload.png" alt="Upload" />
+          Upload Image
+        </div>
+      </div>
+      <div className="AddDesc">
+        <label htmlFor="Add description">Add description</label>
+        <br />
+        <textarea rows="4" className= "descriptionText" placeholder="Description about what flashcards are about" />
+        <br />
       </div>
       <EditFlashCardItemList />
     </div>
-  )
+  );
 }
 
 export default CreateFlashCardSet;
