@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./EditFlashCardItemList.css"
 import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem'
 
-const EditFlashCardItemList = () => {
+const EditFlashCardItemList = (props) => {
     const [flashcards, setFlashcards] = useState([1])
 
     const handleOnClick = () => {
         flashcards.push(flashcards.length + 1)
         setFlashcards([...flashcards])
     };
+    useEffect(() => {
+        props.listChanged(flashcards);
+    }, [flashcards])
+
 
     return (
         <div>

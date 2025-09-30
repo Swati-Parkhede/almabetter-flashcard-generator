@@ -13,7 +13,7 @@ function CreateFlashCardsPage() {
     const existingData = JSON.parse(localStorage.getItem("flashCardApp")) || {};
     existingData[group.groupName] = group;
     localStorage.setItem("flashCardApp", JSON.stringify(existingData));
-    //route to my flashcard page
+    //ToDo: Route to my flashcard page
   }
 
   const handleGroupDetailsChange = (groupName, description) => {
@@ -22,10 +22,15 @@ function CreateFlashCardsPage() {
     setGroup(group);
   }
 
+  const handleFlashcardlistChange = (flashcards) => {
+    group["flashCards"] = flashcards;
+    setGroup(group);
+  }
+
   return (
     <>
       <CreateFlashCardSet detailsChanged={handleGroupDetailsChange} />
-      <EditFlashCardItemList />
+      <EditFlashCardItemList listChanged={handleFlashcardlistChange} />
       <div className='BtnContainer' >
         <button className='CreateFlashcardBtn' onClick={handleCreateBtnClick}>Create</button>
       </div>
