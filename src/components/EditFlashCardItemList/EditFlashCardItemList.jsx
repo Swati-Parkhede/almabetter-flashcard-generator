@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./EditFlashCardItemList.css"
 import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem'
 
-export const EditFlashCardItemList = () => {
+const EditFlashCardItemList = () => {
     const [flashcards, setFlashcards] = useState([1])
 
     const handleOnClick = () => {
@@ -23,3 +23,5 @@ export const EditFlashCardItemList = () => {
         </div>
     )
 }
+
+export default EditFlashCardItemList
