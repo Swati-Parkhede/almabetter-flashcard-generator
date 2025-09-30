@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./EditFlashCardItem.css";
 
 
 
 function EditFlashCardItem(props) {
     const [term, setTerm] = useState("")
+    const [description, setDescription] = useState("")
 
-
-    const handleChange = (e) => {
-        setTerm(e.target.value)
-    }
+    useEffect(() => {
+        props.flashcardChanged(props.cardItemIndex - 1, term, description)
+    }, [term, description])
 
     return (
         <>
@@ -21,11 +21,11 @@ function EditFlashCardItem(props) {
                 <label htmlFor='text'>Enter Defination*</label>
                 <div></div>
                 <div></div>
-                <input type="text" onChange={handleChange} className='TextArea'></input>
-                <textarea className='TextArea' />
+                <input type="text" onChange={(e) => { setTerm(e.target.value) }} className='TextArea'></input>
+                <textarea className='TextArea' onChange={(e) => { setDescription(e.target.value) }} />
                 <div className='CardImagebtn'>Select Image</div><br />
             </div>
-                {term === "" && <div className='errormsg'>Please enter the details</div>}
+            {term === "" && <div className='errormsg'>Please enter the details</div>}
         </>
     )
 }
