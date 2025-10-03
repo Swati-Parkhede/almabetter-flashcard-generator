@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import MyFlashCards from './pages/MyFlashCards'
-import FlashCardDetails from './pages/flashCardDetails'
+import FlashCardDetailsPage from './pages/FlashCardDetailsPage'
 import CreateFlashCardsPage from './pages/CreateFlashCardsPage'
 
 

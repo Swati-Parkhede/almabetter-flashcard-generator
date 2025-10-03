@@ -1,0 +1,43 @@
+.pallete {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Changed from center to flex-start */
+}
+
+.card-wrapper {
+    flex: 0 0 calc(33.33% - 14px); /* Changed flex-basis and adjusted calculation */
+    min-width: 280px;
+    max-width: 350px;
+    margin-bottom: 20px; /* Added margin bottom for consistent spacing */
+}
+
+/* Add padding to container to offset negative margin */
+@media (min-width: 993px) {
+    .card-grid {
+        padding: 0 20px;
+    }
+    
+    /* Force 3-column layout */
+    .card-wrapper:nth-child(3n) {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-wrapper {
+        flex: 0 0 calc(50% - 10px); /* Adjusted for 2 columns */
+    }
+}
+
+@media (max-width: 680px) {
+    .card-wrapper {
+        flex: 0 0 100%;
+    }
+}

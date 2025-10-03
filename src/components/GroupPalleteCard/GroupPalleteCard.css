@@ -1,0 +1,30 @@
+.setContainer {
+    border: 1px solid grey;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    height: 115px;
+}
+
+.title {
+    font-weight: 600;
+}
+
+.desc {
+    font-size: small;
+
+}
+
+.count {
+    font-size: small;
+}
+
+.viewCardBtn {
+    border: 1px solid red;
+    color: red;
+    font-weight: 500;
+    font-size: small;
+    width: 125px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
