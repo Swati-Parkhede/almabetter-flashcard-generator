@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import CreateFlashCardSet from '../components/CreateFlashCardSet/CreateFlashCardSet';
 import EditFlashCardItemList from '../components/EditFlashCardItemList/EditFlashCardItemList';
+import MyFlashCards from './MyFlashCards';
 
 function CreateFlashCardsPage() {
   const [group, setGroup] = useState({
@@ -34,6 +35,8 @@ function CreateFlashCardsPage() {
       <div className='BtnContainer' >
         <button className='CreateFlashcardBtn' onClick={handleCreateBtnClick}>Create</button>
       </div>
+      <MyFlashCards />
+      
     </>
   )
 }

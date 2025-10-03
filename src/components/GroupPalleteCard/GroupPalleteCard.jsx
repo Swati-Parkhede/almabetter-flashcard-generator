@@ -1,7 +1,6 @@
 import React from 'react'
 import "./GroupPalleteCard.css"
 import { Link } from 'react-router-dom'
-import FlashCardDetailsPage from '../../pages/FlashCardDetailsPage'
 
 function GroupPalleteCard(props) {
 
