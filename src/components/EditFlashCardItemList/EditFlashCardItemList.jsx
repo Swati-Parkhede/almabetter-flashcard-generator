@@ -4,7 +4,6 @@ import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem'
 
 const EditFlashCardItemList = (props) => {
     const [flashcards, setFlashcards] = useState([{ term: "", description: "" }])
-
     const handleOnClick = () => {
         flashcards.push({ term: "", description: "" })
         setFlashcards([...flashcards])
@@ -13,22 +12,21 @@ const EditFlashCardItemList = (props) => {
         props.listChanged(flashcards);
     }, [flashcards])
 
-    const handleFlashCardUpdate = (idx, newterm, newdescription) => {
-        flashcards[idx] = { term: newterm, description: newdescription }
+    const handleFlashCardUpdate = (idx, newterm, newdescription, newImage) => {
+        flashcards[idx] = { term: newterm, description: newdescription, image: newImage }
         setFlashcards([...flashcards]);
-
     }
 
     return (
         <div className='flashCardList'>
             <div>
                 {
-                    flashcards.map((fc) =>
-                        <EditFlashCardItem cardItemIndex={flashcards.length} flashcardChanged={handleFlashCardUpdate} />
+                    flashcards.map((fc, index) =>
+                        <EditFlashCardItem cardItemIndex={index} flashcardChanged={handleFlashCardUpdate} />
                     )
                 }
             </div>
-            <button className='AddCardItemBtn' onClick={handleOnClick}> + Add more</button>
+            <div className='AddCardItemBtn' onClick={handleOnClick}> + Add more</div>
         </div>
     )
 }

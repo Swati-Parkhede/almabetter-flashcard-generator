@@ -4,6 +4,7 @@
     font-size: small;
     border: 0px;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .flashCardList {
