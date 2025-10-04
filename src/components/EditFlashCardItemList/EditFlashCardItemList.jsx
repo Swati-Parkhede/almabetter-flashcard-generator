@@ -20,7 +20,7 @@ const EditFlashCardItemList = (props) => {
     }
 
     return (
-        <div>
+        <div className='flashCardList'>
             <div>
                 {
                     flashcards.map((fc) =>

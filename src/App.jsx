@@ -7,14 +7,15 @@ import FlashCardDetailsPage from './pages/FlashCardDetailsPage'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainFlashCards />} />
-        <Route path="/createFlashCardsPage" element={<CreateFlashCardsPage />} />
-        <Route path="/myflashcards" element={<MyFlashCards />} />
-        <Route exact path="/flashcards/:id" element={<FlashCardDetailsPage />} />
-      </Routes>
-    </Router>
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<MainFlashCards />} />
+    //     <Route path="/createFlashCardsPage" element={<CreateFlashCardsPage />} />
+    //     <Route path="/myflashcards" element={<MyFlashCards />} />
+    //     <Route exact path="/flashcards/:id" element={<FlashCardDetailsPage />} />
+    //   </Routes>
+    // </Router>
+    <MainFlashCards />
   )
 }
 

@@ -33,10 +33,8 @@ function CreateFlashCardsPage() {
       <CreateFlashCardSet detailsChanged={handleGroupDetailsChange} />
       <EditFlashCardItemList listChanged={handleFlashcardlistChange} />
       <div className='BtnContainer' >
-        <button className='CreateFlashcardBtn' onClick={handleCreateBtnClick}>Create</button>
+        <button className='primary-btn' onClick={handleCreateBtnClick}>Create</button>
       </div>
-      <MyFlashCards />
-      
     </>
   )
 }

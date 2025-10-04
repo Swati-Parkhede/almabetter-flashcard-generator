@@ -10,17 +10,11 @@
 }
 
 .CardImagebtn {
-    border: 1px solid #5f75ee;
-    border-radius: 5px;
-    padding: 6px 22px;
-    font-size: small;
-    font-weight: 600;
-    color: #5f75ee;
     height: 21px;
     width: 80px;
 }
 
-.CardItemIndx{
+.CardItemIndx {
     display: table;
     background-color: #ef3030;
     color: white;
@@ -32,7 +26,7 @@
     width: 25px;
 }
 
-.errormsg{
+.errormsg {
     color: #ef3030;
     font-weight: 500;
     font-size: small;

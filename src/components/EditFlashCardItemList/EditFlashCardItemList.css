@@ -5,3 +5,9 @@
     border: 0px;
     background-color: transparent;
 }
+
+.flashCardList {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}

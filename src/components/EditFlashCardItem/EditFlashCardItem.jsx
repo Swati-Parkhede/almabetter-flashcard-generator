@@ -13,7 +13,7 @@ function EditFlashCardItem(props) {
 
     return (
         <>
-            <div className='cardPage'>
+            <div className='cardPage' key={props.cardItemIndex}>
                 <div className='CardItemIndx'>
                     {props.cardItemIndex}
                 </div>
@@ -23,7 +23,7 @@ function EditFlashCardItem(props) {
                 <div></div>
                 <input type="text" onChange={(e) => { setTerm(e.target.value) }} className='TextArea'></input>
                 <textarea className='TextArea' onChange={(e) => { setDescription(e.target.value) }} />
-                <div className='CardImagebtn'>Select Image</div><br />
+                <div className='CardImagebtn secondary-btn'>Select Image</div><br />
             </div>
             {term === "" && <div className='errormsg'>Please enter the details</div>}
         </>
