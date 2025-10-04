@@ -1,6 +1,7 @@
 import React, { use, useState } from 'react'
 import FlashCardDetails from '../../pages/FlashCardDetailsPage'
 import './ViweFlashcardDetails.css'
+import SharePanel from '../SharePanel/SharePanel'
 
 const ViweFlashcardDetails = (props) => {
     const detailStr = localStorage.getItem("flashCardApp")
@@ -10,6 +11,10 @@ const ViweFlashcardDetails = (props) => {
     const groupName = detailObj[key].groupName;
     const desc = detailObj[key].description;
     const flashCards = detailObj[key].flashCards;
+    const [shareComponentVisible, setshareComponentVisible] = useState(false)
+    const handleShareComponentVisibility = (visibility) => {
+        setshareComponentVisible(visibility)
+    }
     return (
         <>
             <div>
@@ -27,7 +32,7 @@ const ViweFlashcardDetails = (props) => {
                         <span className='fc_description'>{flashCards[selectedIndx].description}</span>
                     </div>
                     <div className="Share">
-                        <div className='panel'>Share</div>
+                        <div className='panel' onClick={() => { setshareComponentVisible(true) }}>Share</div>
                         <div className='panel'>Download</div>
                         <div className='panel'>Print</div>
                     </div>
@@ -38,6 +43,9 @@ const ViweFlashcardDetails = (props) => {
                     <span className='navBtn'>{selectedIndx + 1}/{flashCards.length}</span>
                     <span className='navBtn' onClick={() => { setSelectedIndx((selectedIndx + 1) % (flashCards.length)) }}>{">"}</span>
                 </div>
+
+                {shareComponentVisible == true ? <SharePanel onChange={handleShareComponentVisibility} /> : <></>}
+
             </div>
         </>
     )

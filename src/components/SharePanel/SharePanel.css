@@ -1,0 +1,85 @@
+.socialIcons {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.icons {
+    height: 25px;
+    width: 2xpx;
+    padding: 5px;
+    background-color: #EFEBE9;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.linkImg {
+    height: 20px;
+    width: 20px;
+    margin-left: 20px;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.url {
+    font-weight: 500;
+}
+
+.urlTitle {
+    color: grey;
+    margin-right: 10px;
+    font-size: smaller;
+}
+
+.urlBox {
+    border: 1px solid gray;
+    border-radius: 10px;
+    border-style: dashed;
+    padding: 10px 15px;
+}
+
+.title {
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.close-btn {
+    text-align: end;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.highlightBox {
+    position: fixed;
+    top: 30%;
+    left: 10%;
+    right: 10%;
+    background-color: white;
+    justify-content: space-between;
+    padding: 10px 40px;
+    z-index: 1000;
+    width: 500px;
+    border-radius: 10px;
+    margin: -8px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
