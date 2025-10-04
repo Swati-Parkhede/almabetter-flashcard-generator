@@ -15,7 +15,12 @@ function GroupPalleteCard(props) {
                         {props.cardCount == 0 ? <></> : props.cardCount}
                         <>{props.cardCount == 1 ? " Card" : " Cards"}</>
                     </div>
-                    <button className='viewCardBtn'>View Cards</button>
+                    <button
+                        className='viewCardBtn'
+                        onClick={() => window.location.href = `/flashcards/${props.groupName}`}
+                    >
+                        View Cards
+                    </button>
                 </div>
             </div>
         </>

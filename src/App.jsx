@@ -3,7 +3,7 @@ import './App.css'
 import MyFlashCards from './pages/MyFlashCards'
 import CreateFlashCardsPage from './pages/CreateFlashCardsPage'
 import MainFlashCards from './pages/MainFlashCards'
-
+import FlashCardDetailsPage from './pages/FlashCardDetailsPage'
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<MainFlashCards />} />
         <Route path="/createFlashCardsPage" element={<CreateFlashCardsPage />} />
         <Route path="/myflashcards" element={<MyFlashCards />} />
+        <Route exact path="/flashcards/:id" element={<FlashCardDetailsPage />} />
       </Routes>
     </Router>
   )
