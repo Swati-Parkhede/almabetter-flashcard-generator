@@ -13,6 +13,7 @@ function GroupPallete(props) {
                         <GroupPalleteCard 
                             groupName={dataObj[k].groupName}
                             description={dataObj[k].description}
+                            image={dataObj[k].image}
                             cardCount={dataObj[k].flashCards.length}
                         />
                     </div>

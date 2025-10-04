@@ -22,6 +22,7 @@
 
 .UploadimageBtn {
     margin-left: 60px;
+    height: 30px;
 }
 
 .smallImage {
@@ -37,4 +38,13 @@
 
 .text-label {
     padding: 5px 0;
+}
+
+.upload_img {
+    height: 80px;
+    width: auto;
+    position: relative;
+    top: -35px;
+    padding: 0px 5px;
+    margin: 0px 10px;
 }

@@ -1,13 +1,15 @@
 .setContainer {
-    border: 1px solid grey;
+    border: 1px solid #edf8f8;
     border-radius: 10px;
     text-align: center;
     width: 200px;
-    height: 115px;
+    padding: 14px;
+    background-color: white;
 }
 
 .title {
-    font-weight: 600;
+    font-weight: 700;
+    margin-top: 25px;
 }
 
 .desc {
@@ -27,4 +29,14 @@
     width: 125px;
     margin-top: 10px;
     border-radius: 5px;
+}
+
+.groupImg {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    right: -27%;
+    top: 25px;
+    border-radius: 50%;
+    background-color: #edf8f8;
 }

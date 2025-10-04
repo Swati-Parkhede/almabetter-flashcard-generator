@@ -17,9 +17,10 @@ function CreateFlashCardsPage() {
     //ToDo: Route to my flashcard page
   }
 
-  const handleGroupDetailsChange = (groupName, description) => {
+  const handleGroupDetailsChange = (groupName, description, image) => {
     group["groupName"] = groupName;
     group["description"] = description;
+    group["image"] = image;
     setGroup(group);
   }
 
