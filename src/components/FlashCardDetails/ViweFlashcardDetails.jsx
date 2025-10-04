@@ -28,13 +28,24 @@ const ViweFlashcardDetails = (props) => {
                         ))}
                     </div>
                     <div className="FlashcardInfo panel">
-                        <span className='fc_image'></span>
-                        <span className='fc_description'>{flashCards[selectedIndx].description}</span>
+                        <div className='fc_image card_img'>
+                            <img class='card_img' src={flashCards[selectedIndx].image}></img>
+                        </div>
+                        <div className='fc_description'>{flashCards[selectedIndx].description}</div>
                     </div>
                     <div className="Share">
-                        <div className='panel' onClick={() => { setshareComponentVisible(true) }}>Share</div>
-                        <div className='panel'>Download</div>
-                        <div className='panel'>Print</div>
+                        <div className='panel' onClick={() => { setshareComponentVisible(true) }}>
+                            <img className='shareIcn' src='/share2.png'></img>
+                            <span>Share</span>
+                        </div>
+                        <div className='panel'>
+                            <img className='shareIcn' src='/download.png'></img>
+                            <span>Download</span>
+                        </div>
+                        <div className='panel'>
+                            <img className='shareIcn' src='/printer.png'></img>
+                            <span>Print</span>
+                        </div>
                     </div>
                 </div>
 
