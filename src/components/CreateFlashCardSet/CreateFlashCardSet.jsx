@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
+import { Field, ErrorMessage } from 'formik';
 import './CreateFlashCardSet.css'
-function CreateFlashCardSet(props) {
-  const [groupName, setGroupName] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState();
+
+function CreateFlashCardSet({ values, errors, touched, setFieldValue }) {
   const fileInputRef = useRef(null);
-  useEffect(() => {
-    props.detailsChanged(groupName, description, image);
-  }, [groupName, description, image])
 
   const onSelectImage = () => {
     fileInputRef.current.click();
@@ -20,7 +16,7 @@ function CreateFlashCardSet(props) {
     const reader = new FileReader();
     reader.onload = () => {
       const base64 = reader.result;
-      setImage(base64); // update preview
+      setFieldValue('image', base64);
     };
     reader.readAsDataURL(file);
   };
@@ -32,16 +28,23 @@ function CreateFlashCardSet(props) {
         </div>
         <div className="CardDetails">
           <div>
-            <input id="createGroup" className="CardSetCb" onChange={(e) => { setGroupName(e.target.value) }} type='text' />
+            <Field
+              id="createGroup"
+              name="groupName"
+              type="text"
+              className="CardSetCb"
+              value={values.groupName}
+            />
+            <ErrorMessage name="groupName" component="div" style={{ color: 'red', fontSize: '12px', marginTop: '4px' }} />
           </div>
           <div className="UploadimageBtn secondary-btn" onClick={onSelectImage}>
             <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
             <img className="smallImage" src="/upload.png" alt="Upload" />Upload Image
           </div>
           <div>
-            {image && (
+            {values.image && (
               <>
-                <img className="upload_img" src={image} alt="Uploaded preview" />
+                <img className="upload_img" src={values.image} alt="Uploaded preview" />
               </>
             )}
           </div>
@@ -50,7 +53,15 @@ function CreateFlashCardSet(props) {
           <div className='text-label'>
             <label htmlFor="add-description">Add description</label>
           </div>
-          <textarea id="add-description" rows="4" className="descriptionText" onChange={(e) => setDescription(e.target.value)} placeholder="Description about what flashcards are about" />
+          <Field
+            as="textarea"
+            id="add-description"
+            name="description"
+            rows="4"
+            className="descriptionText"
+            placeholder="Description about what flashcards are about"
+          />
+          <ErrorMessage name="description" component="div" style={{ color: 'red', fontSize: '12px', marginTop: '4px' }} />
           <br />
         </div>
       </div>
