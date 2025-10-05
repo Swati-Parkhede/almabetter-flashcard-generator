@@ -16,7 +16,7 @@ function MainFlashCards() {
                 <div className={tabIndex == 1 ? "tab select-tab" : "tab"} onClick={() => navigate("/my-flashcards")}>My Flashcards</div>
             </div>
             {
-                location.pathname.includes("my-flashcards") ? <MyFlashCards /> : <CreateFlashCardsPage />
+                tabIndex == 0 ? <CreateFlashCardsPage /> : <MyFlashCards />
             }
         </>
     )
