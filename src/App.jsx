@@ -11,8 +11,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainFlashCards />} />
-          <Route path="/createFlashCardsPage" element={<CreateFlashCardsPage />} />
-          <Route path="/myflashcards" element={<MyFlashCards />} />
+          <Route path="/create-new" element={<MainFlashCards />} />
+          <Route path="/my-flashcards" element={<MainFlashCards />} />
           <Route exact path="/flashcards/:id" element={<FlashCardDetailsPage />} />
         </Routes>
       </Router>

@@ -2,6 +2,7 @@ import React, { use, useState } from 'react'
 import FlashCardDetails from '../../pages/FlashCardDetailsPage'
 import './ViweFlashcardDetails.css'
 import SharePanel from '../SharePanel/SharePanel'
+import { useNavigate } from 'react-router-dom'
 
 const ViweFlashcardDetails = (props) => {
     const detailStr = localStorage.getItem("flashCardApp")
@@ -15,11 +16,19 @@ const ViweFlashcardDetails = (props) => {
     const handleShareComponentVisibility = (visibility) => {
         setshareComponentVisible(visibility)
     }
+    const navigate = useNavigate();
     return (
         <>
             <div>
-                <div className='FlashcardTitle'> {groupName}</div>
-                <div className='FlashcardDes'> {desc}</div>
+                <div className='group_title'>
+                    <div className='back-btn'>
+                        <img height='25px' src='/back.png' onClick={()=>navigate(-1)}></img>
+                    </div>
+                    <div>
+                        <div className='FlashcardTitle'> {groupName}</div>
+                        <div className='FlashcardDes'> {desc}</div>
+                    </div>
+                </div>
                 <div className='panels'>
                     <div className='panel' >
                         <div className='fc_title'>Flashcards</div>

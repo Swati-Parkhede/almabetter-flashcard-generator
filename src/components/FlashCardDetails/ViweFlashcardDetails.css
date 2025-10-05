@@ -84,3 +84,13 @@
     width: 18px;
     margin: 1px 15px;
 }
+
+.group_title{
+    display: flex;
+}
+
+.back-btn{
+    margin-right: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+}
