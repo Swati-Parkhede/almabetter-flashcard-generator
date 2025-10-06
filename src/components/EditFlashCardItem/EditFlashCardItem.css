@@ -1,0 +1,52 @@
+.cardPage {
+    display: flex;
+}
+
+.TextArea {
+    height: 30px;
+    width: 350px;
+}
+
+.CardImagebtn {
+    height: 21px;
+    width: 80px;
+    margin-top: 25px;
+}
+
+.CardItemIndx {
+    margin: 2% 0;
+    background-color: #ef3030;
+    color: white;
+    text-align: center;
+    border-radius: 61px;
+    height: 25px;
+    border: 1px solid red;
+    display: table;
+    width: 25px;
+}
+
+.errormsg {
+    color: #ef3030;
+    font-weight: 500;
+    font-size: small;
+}
+
+.selected_img_container {
+    display: flex;
+    min-width: 125px;
+}
+
+.selected_img {
+    height: 65px;
+    width: auto;
+}
+.edit-btn{
+    margin: 10px;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    height: 80px;
+}

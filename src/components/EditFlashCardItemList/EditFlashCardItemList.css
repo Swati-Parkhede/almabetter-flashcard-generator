@@ -1,0 +1,14 @@
+.AddCardItemBtn {
+    font-weight: 500;
+    color: #5f75ee;
+    font-size: small;
+    border: 0px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.flashCardList {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}

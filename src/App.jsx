@@ -1,19 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import CreateFlashCards from './pages/CreateFlashCards'
 import MyFlashCards from './pages/MyFlashCards'
-import FlashCardDetails from './pages/flashCardDetails'
-
+import CreateFlashCardsPage from './pages/CreateFlashCardsPage'
+import MainFlashCards from './pages/MainFlashCards'
+import FlashCardDetailsPage from './pages/FlashCardDetailsPage'
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<CreateFlashCards />} />
-        <Route path="/myflashcards" element={<MyFlashCards />} />
-        <Route path="/flashcarddetails" element={<FlashCardDetails />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainFlashCards />} />
+          <Route path="/create-new" element={<MainFlashCards />} />
+          <Route path="/my-flashcards" element={<MainFlashCards />} />
+          <Route exact path="/flashcards/:id" element={<FlashCardDetailsPage />} />
+        </Routes>
+      </Router>
+    </>
   )
 }
 

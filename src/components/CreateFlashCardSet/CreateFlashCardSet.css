@@ -1,0 +1,50 @@
+.AddDesc {
+    width: 600px;
+    margin-top: 10px;
+}
+
+.CreateFlashPage {
+    margin: 20px 0;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.CardDetails {
+    display: flex;
+}
+
+.CardSetCb {
+    width: 300px;
+    height: 36px;
+    font-size: large;
+}
+
+.UploadimageBtn {
+    margin-left: 60px;
+    height: 30px;
+}
+
+.smallImage {
+    width: 25px;
+    vertical-align: middle;
+    margin: 0px 10px;
+}
+
+.descriptionText {
+    width: 500px;
+    rows: 3
+}
+
+.text-label {
+    padding: 5px 0;
+}
+
+.upload_img {
+    height: 80px;
+    width: auto;
+    position: relative;
+    top: -35px;
+    padding: 0px 5px;
+    margin: 0px 10px;
+}

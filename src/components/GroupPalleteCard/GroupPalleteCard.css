@@ -1,0 +1,42 @@
+.setContainer {
+    border: 1px solid #edf8f8;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    padding: 25px;
+    background-color: white;
+}
+
+.title {
+    font-weight: 700;
+    margin-top: 25px;
+}
+
+.desc {
+    font-size: small;
+
+}
+
+.count {
+    font-size: small;
+}
+
+.viewCardBtn {
+    border: 1px solid red;
+    color: red;
+    font-weight: 500;
+    font-size: small;
+    width: 125px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.groupImg {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    right: -33%;
+    top: 30px;
+    border-radius: 50%;
+    background-color: #edf8f8;
+}

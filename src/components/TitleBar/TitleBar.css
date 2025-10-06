@@ -1,0 +1,43 @@
+.logo_img {
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+}
+
+.header {
+    font-size: x-large;
+    font-family: cursive;
+    font-weight: 700;
+    color: white;
+    margin-left: 10px;
+}
+
+.titleBar {
+    margin: 0;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 990px;
+}
+
+.primary-btn {
+    background-color: #ef3030;
+    color: white;
+    font-size: small;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 6px 22px;
+}
+
+.secondary-btn {
+    border: 1px solid #5f75ee;
+    border-radius: 5px;
+    padding: 6px 22px;
+    font-size: small;
+    font-weight: 600;
+    color: #5f75ee;
+}
