@@ -1,23 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './CreateFlashCardSet.css'
 import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem';
 import { useNavigate } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 
 function CreateFlashCardSet() {
-  const [groupName, setGroupName] = useState("");
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState();
-  const [flashCards, setFlashCards] = useState([{ term: "", description: "" }]);
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const onSelectImage = () => {
     fileInputRef.current.click();
   }
-  const handleOnClick = () => {
-    flashCards.push({ term: "", description: "" })
-    setFlashCards([...flashCards])
-  };
-  const navigate = useNavigate();
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -30,67 +25,133 @@ function CreateFlashCardSet() {
     reader.readAsDataURL(file);
   };
 
-  const handleFlashCardUpdate = (idx, newterm, newdescription, newImage) => {
-    flashCards[idx] = { term: newterm, description: newdescription, image: newImage }
-    setFlashCards([...flashCards]);
-  }
-
-  const handleCreateBtnClick = () => {
+  const handleCreateBtnClick = (values) => {
     const existingData = JSON.parse(localStorage.getItem("flashCardApp")) || {};
-    existingData[groupName] = {
-      groupName: groupName,
-      description: description,
+    existingData[values.groupName] = {
+      groupName: values.groupName,
+      description: values.description,
       image: image,
-      flashCards: flashCards
+      flashCards: values.flashCards
     };
     localStorage.setItem("flashCardApp", JSON.stringify(existingData));
     navigate("/my-flashcards");
   }
 
+  const initialValues = {
+    groupName: "",
+    description: "",
+    flashCards: [{ term: "", description: "", image: null }]
+  };
+
+  const validate = (values) => {
+    const errors = {};
+    
+    if (!values.groupName) {
+      errors.groupName = 'Group name is required';
+    }
+    
+    // Validate flashcards
+    if (!values.flashCards || values.flashCards.length === 0) {
+      errors.flashCards = 'At least one flashcard is required';
+    } else {
+      const flashCardErrors = [];
+      values.flashCards.forEach((flashCard, index) => {
+        const flashCardError = {};
+        if (!flashCard.term) {
+          flashCardError.term = 'Term is required';
+        }
+        if (!flashCard.description) {
+          flashCardError.description = 'Definition is required';
+        }
+        if (Object.keys(flashCardError).length > 0) {
+          flashCardErrors[index] = flashCardError;
+        }
+      });
+      if (flashCardErrors.length > 0) {
+        errors.flashCards = flashCardErrors;
+      }
+    }
+    
+    return errors;
+  };
+
   return (
-    <>
-      <div className="CreateFlashPage">
-        <div className='text-label'>
-          <label htmlFor="createGroup">Create Group*</label>
-        </div>
-        <div className="CardDetails">
-          <div>
-            <input id="createGroup" className="CardSetCb" onChange={(e) => { setGroupName(e.target.value) }} type='text' />
+    <Formik
+      initialValues={initialValues}
+      validate={validate}
+      onSubmit={(values, { setSubmitting }) => {
+        handleCreateBtnClick(values);
+        setSubmitting(false);
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <div className="CreateFlashPage">
+            <div className='text-label'>
+              <label htmlFor="createGroup">Create Group*</label>
+            </div>
+            <div className="CardDetails">
+              <div>
+                <Field 
+                  id="createGroup" 
+                  name="groupName"
+                  className="CardSetCb" 
+                  type='text' 
+                />
+                <ErrorMessage name="groupName" component="div" style={{ color: 'red', fontSize: '12px', marginTop: '5px' }} />
+              </div>
+              <div className="UploadimageBtn secondary-btn" onClick={onSelectImage}>
+                <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
+                <img className="smallImage" src="/upload.png" alt="Upload" />Upload Image
+              </div>
+              <div>
+                {image && (
+                  <>
+                    <img className="upload_img" src={image} alt="Uploaded preview" />
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="AddDesc">
+              <div className='text-label'>
+                <label htmlFor="add-description">Add description</label>
+              </div>
+              <Field 
+                as="textarea"
+                id="add-description" 
+                name="description"
+                rows="4" 
+                className="descriptionText" 
+                placeholder="Description about what flashcards are about" 
+              />
+              <br />
+            </div>
           </div>
-          <div className="UploadimageBtn secondary-btn" onClick={onSelectImage}>
-            <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
-            <img className="smallImage" src="/upload.png" alt="Upload" />Upload Image
-          </div>
-          <div>
-            {image && (
-              <>
-                <img className="upload_img" src={image} alt="Uploaded preview" />
-              </>
+          <FieldArray name="flashCards">
+            {({ push, remove, form }) => (
+              <div className='flashCardList'>
+                <div>
+                  {form.values.flashCards.map((flashCard, index) => (
+                    <EditFlashCardItem 
+                      key={index} 
+                      cardItemIndex={index} 
+                    />
+                  ))}
+                </div>
+                <div className='AddCardItemBtn' onClick={() => push({ term: "", description: "", image: null })}>
+                  + Add more
+                </div>
+              </div>
             )}
+          </FieldArray>
+          <div className='BtnContainer' >
+            <button className='primary-btn' type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Creating...' : 'Create'}
+            </button>
           </div>
-        </div>
-        <div className="AddDesc">
-          <div className='text-label'>
-            <label htmlFor="add-description">Add description</label>
-          </div>
-          <textarea id="add-description" rows="4" className="descriptionText" onChange={(e) => setDescription(e.target.value)} placeholder="Description about what flashcards are about" />
-          <br />
-        </div>
-      </div>
-      <div className='flashCardList'>
-        <div>
-          {
-            flashCards.map((fc, index) =>
-              <EditFlashCardItem key={index} cardItemIndex={index} flashcardChanged={handleFlashCardUpdate} />
-            )
-          }
-        </div>
-        <div className='AddCardItemBtn' onClick={handleOnClick}> + Add more</div>
-      </div>
-      <div className='BtnContainer' >
-        <button className='primary-btn' onClick={handleCreateBtnClick}>Create</button>
-      </div>
-    </>
+        </Form>
+      )}
+    </Formik>
   );
 }
 
