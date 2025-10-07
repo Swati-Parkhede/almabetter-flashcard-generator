@@ -8,7 +8,7 @@ function EditFlashCardItem(props) {
     const [image, setImage] = useState();
 
     useEffect(() => {
-        props.flashcardChanged(props.cardItemIndex - 1, term, description, image)
+        props.flashcardChanged(props.cardItemIndex, term, description, image)
     }, [term, description, image])
 
     const onSelectImage = () => {

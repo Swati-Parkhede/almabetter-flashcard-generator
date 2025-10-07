@@ -38,7 +38,7 @@ const ViweFlashcardDetails = (props) => {
                     </div>
                     <div className="FlashcardInfo panel">
                         <div className='fc_image card_img'>
-                            <img class='card_img' src={flashCards[selectedIndx].image}></img>
+                            <img className='card_img' src={flashCards[selectedIndx].image}></img>
                         </div>
                         <div className='fc_description'>{flashCards[selectedIndx].description}</div>
                     </div>
