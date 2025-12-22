@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addFlashcard } from '../../redux/flashcardSlice'
 import './CreateFlashCardSet.css'
 import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +10,7 @@ function CreateFlashCardSet() {
   const [image, setImage] = useState();
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSelectImage = () => {
     fileInputRef.current.click();
@@ -26,14 +29,19 @@ function CreateFlashCardSet() {
   };
 
   const handleCreateBtnClick = (values) => {
-    const existingData = JSON.parse(localStorage.getItem("flashCardApp")) || {};
-    existingData[values.groupName] = {
+    const flashcardData = {
       groupName: values.groupName,
       description: values.description,
       image: image,
       flashCards: values.flashCards
     };
-    localStorage.setItem("flashCardApp", JSON.stringify(existingData));
+    
+    // Dispatch action to add flashcard to Redux store
+    dispatch(addFlashcard({
+      id: values.groupName,
+      data: flashcardData
+    }));
+    
     navigate("/my-flashcards");
   }
 
