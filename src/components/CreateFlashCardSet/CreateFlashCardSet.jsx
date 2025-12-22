@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addFlashcard } from '../../redux/flashcardSlice'
+import React, { useRef, useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addFlashcard, selectAllFlashcards } from '../../redux/flashcardSlice'
 import './CreateFlashCardSet.css'
 import EditFlashCardItem from '../EditFlashCardItem/EditFlashCardItem';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,20 @@ function CreateFlashCardSet() {
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const flashcards = useSelector(selectAllFlashcards);
+
+  const SyncGroupFields = ({ groupName, setFieldValue }) => {
+    useEffect(() => {
+      if (groupName !== '__add_new__') {
+        const data = (flashcards && flashcards[groupName]) || {};
+        setFieldValue('description', data.description || '');
+        setFieldValue('flashCards', data.flashCards || [{ term: '', description: '', image: null }]);
+        setImage(data.image || null);
+      }
+    }, [groupName, setFieldValue, flashcards]);
+
+    return null;
+  };
 
   const onSelectImage = () => {
     fileInputRef.current.click();
@@ -29,36 +43,39 @@ function CreateFlashCardSet() {
   };
 
   const handleCreateBtnClick = (values) => {
+    const finalGroupName = values.groupName === '__add_new__' ? values.newGroupName : values.groupName;
+
     const flashcardData = {
-      groupName: values.groupName,
+      groupName: finalGroupName,
       description: values.description,
       image: image,
       flashCards: values.flashCards
     };
-    
-    // Dispatch action to add flashcard to Redux store
+
     dispatch(addFlashcard({
-      id: values.groupName,
+      id: finalGroupName,
       data: flashcardData
     }));
-    
+
     navigate("/my-flashcards");
   }
 
   const initialValues = {
     groupName: "",
+    newGroupName: "",
     description: "",
     flashCards: [{ term: "", description: "", image: null }]
   };
 
   const validate = (values) => {
     const errors = {};
-    
+
     if (!values.groupName) {
       errors.groupName = 'Group name is required';
+    } else if (values.groupName === '__add_new__' && !values.newGroupName) {
+      errors.newGroupName = 'New group name is required';
     }
-    
-    // Validate flashcards
+
     if (!values.flashCards || values.flashCards.length === 0) {
       errors.flashCards = 'At least one flashcard is required';
     } else {
@@ -79,7 +96,7 @@ function CreateFlashCardSet() {
         errors.flashCards = flashCardErrors;
       }
     }
-    
+
     return errors;
   };
 
@@ -92,7 +109,7 @@ function CreateFlashCardSet() {
         setSubmitting(false);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values, setFieldValue }) => (
         <Form>
           <div className="CreateFlashPage">
             <div className='text-label'>
@@ -100,13 +117,32 @@ function CreateFlashCardSet() {
             </div>
             <div className="CardDetails">
               <div>
-                <Field 
-                  id="createGroup" 
+                <Field                  
                   name="groupName"
-                  className="CardSetCb" 
-                  type='text' 
-                />
+                  className="CardSetCb"
+                  as="select"
+                >
+                  <option value="">Select</option>
+                  <option value="__add_new__">Add new</option>
+                  {Object.keys(flashcards || {}).map((group) => (
+                    <option key={group} value={group}>{group}</option>
+                  ))}
+                </Field>
                 <ErrorMessage name="groupName" component="div" style={{ color: 'red', fontSize: '12px', marginTop: '5px' }} />
+
+                <SyncGroupFields groupName={values.groupName} setFieldValue={setFieldValue} />
+
+                {values.groupName === '__add_new__' && (
+                  <div style={{ marginTop: '8px' }}>
+                    <Field
+                      id="createGroup"
+                      name="newGroupName" 
+                      placeholder="Enter new group name"
+                      className="CardSetCb"
+                    />
+                    <ErrorMessage name="newGroupName" component="div" style={{ color: 'red', fontSize: '12px', marginTop: '5px' }} />
+                  </div>
+                )}
               </div>
               <div className="UploadimageBtn secondary-btn" onClick={onSelectImage}>
                 <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} style={{ display: "none" }} />
@@ -124,13 +160,13 @@ function CreateFlashCardSet() {
               <div className='text-label'>
                 <label htmlFor="add-description">Add description</label>
               </div>
-              <Field 
+              <Field
                 as="textarea"
-                id="add-description" 
+                id="add-description"
                 name="description"
-                rows="4" 
-                className="descriptionText" 
-                placeholder="Description about what flashcards are about" 
+                rows="4"
+                className="descriptionText"
+                placeholder="Description about what flashcards are about"
               />
               <br />
             </div>
@@ -140,9 +176,9 @@ function CreateFlashCardSet() {
               <div className='flashCardList'>
                 <div>
                   {form.values.flashCards.map((flashCard, index) => (
-                    <EditFlashCardItem 
-                      key={index} 
-                      cardItemIndex={index} 
+                    <EditFlashCardItem
+                      key={index}
+                      cardItemIndex={index}
                     />
                   ))}
                 </div>
